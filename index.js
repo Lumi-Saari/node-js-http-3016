@@ -11,7 +11,19 @@ const server = http
 
     switch (req.method) {
       case 'GET':
-        if (req.url === '/enquetes/yaki-tofu') {
+                if (req.url === '/') {
+          res.write('<!DOCTYPE html><html lang="ja"><body>' +
+            '<h1>アンケートフォーム</h1>' +
+            '<a href="/enquetes">アンケート一覧</a>' +
+            '</body></html>');
+        } else if (req.url === '/enquetes') {
+          res.write('<!DOCTYPE html><html lang="ja"><body>' +
+            '<h1>アンケート一覧</h1><ul>' +
+            '<li><a href="/enquetes/yaki-tofu">焼き肉・湯豆腐</a></li>' +
+            '<li><a href="/enquetes/rice-bread">ごはん・パン</a></li>' +
+            '<li><a href="/enquetes/sushi-pizza">寿司・ピザ</a></li>' +
+            '</ul></body></html>');
+        } else if (req.url === '/enquetes/yaki-tofu') {
           res.write(
             pug.renderFile('./form.pug', {
               path: req.url,
